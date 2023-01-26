@@ -42,7 +42,6 @@ class SNAKE:
             block_rect = pygame.Rect(x_pos,y_pos,cell_size,cell_size)
 
 
-
             if index == 0:
                 screen.blit(self.head_up,block_rect)
             elif index == len(self.body) - 1:
@@ -67,7 +66,7 @@ class SNAKE:
 
 
     def update_head_graphics(self):
-        head_relation = self.body[1] -self.body[0]
+        head_relation = self.body[1] - self.body[0]
         if head_relation == Vector2(1,0): self.head = self.head_left
         elif head_relation == Vector2(-1,0): self.head = self.head_right
         elif head_relation == Vector2(0,1): self.head = self.head_up
@@ -75,11 +74,11 @@ class SNAKE:
 
 
     def update_tail_graphics(self):
-        tail_relation = self.body[-2] -self.body[-1]
-        if tail_relation == Vector2(): self.tail = self.tail_left
-        elif tail_relation == Vector2(): self.tail = self.tail_left
-        elif tail_relation == Vector2(): self.tail = self.tail_left
-        elif tail_relation == Vector2(): self.tail = self.tail_left
+        tail_relation = self.body[-2] - self.body[-1]
+        if tail_relation == Vector2(1,0): self.tail = self.tail_left
+        elif tail_relation == Vector2(-1,0): self.tail = self.tail_right
+        elif tail_relation == Vector2(0,1): self.tail = self.tail_up
+        elif tail_relation == Vector2(0,-1): self.tail = self.tail_down
             
 
     def move_snake(self):
@@ -158,7 +157,7 @@ class MAIN:
         self.snake.reset()
 
     def draw_grass(self):
-        grass_color = (60,120,200)
+        grass_color = (3, 252, 98)
         for row in range(cell_number):
             if row % 2 == 0:
                 for col in range(cell_number):
@@ -195,8 +194,8 @@ cell_size = 30
 cell_number = 20
 screen = pygame.display.set_mode((cell_number * cell_size,cell_number * cell_size))
 clock = pygame.time.Clock()
-block = pygame.image.load('imagies/apple.jpg').convert_alpha()
-game_font = pygame.font.Font('Font/Love Sign.ttf',25)
+block = pygame.image.load('Graphics/apple.png').convert_alpha()
+game_font = pygame.font.Font(None,25)
 apple = 'apple'
 
 
@@ -228,7 +227,7 @@ while True:
                     main_game.snake.direction = Vector2(1,0)
 
 
-        screen.fill(pygame.Color(70,70,215))
+        screen.fill(pygame.Color(89, 215, 70))
         main_game.draw_elements()
         pygame.display.update()
         clock.tick(60)
