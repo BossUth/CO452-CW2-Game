@@ -62,7 +62,7 @@ class SNAKE:
                     if previous_block.x == 1 and next_block.y == -1 or previous_block.y == -1 and next_block.x == 1:
                         screen.blit(self.body_tr,block_rect)
                     if previous_block.x == 1 and next_block.y == 1 or previous_block.y == 1 and next_block.x == 1:
-                        screen.blit(self.body_bl,block_rect)
+                        screen.blit(self.body_br,block_rect)
 
 
     def update_head_graphics(self):
@@ -162,13 +162,13 @@ class MAIN:
         for row in range(cell_number):
             if row % 2 == 0:
                 for col in range(cell_number):
-                    if col % 2 == 0:
+                    if col % 2 != 0:
                         grass_rect = pygame.Rect(col * cell_size,row * cell_size,cell_size,cell_size)
                         pygame.draw.rect(screen,grass_color,grass_rect)
             
             else:
                 for col in range(cell_number):
-                    if col % 2 != 0:
+                    if col % 2 == 0:
                         grass_rect = pygame.Rect(col * cell_size,row * cell_size,cell_size,cell_size)
                         pygame.draw.rect(screen,grass_color,grass_rect)
     
@@ -179,13 +179,13 @@ class MAIN:
         score_y = int(cell_size * cell_number - 50)
         score_rect = score_surface.get_rect(center = (score_x,score_y))
         apple_rect = apple.get_rect(midright = (score_rect.left,score_rect.centery))
+        bg_rect = pygame.Rect(apple_rect.left,apple_rect.top,apple_rect.width + score_rect.width +6,apple_rect.height)
 
 
 
         pygame.draw.rect(screen,(167,209,61),bg_rect)
         screen.blit(score_surface,score_rect)
         screen.blit(apple,apple_rect)
-        bg_rect = pygame.Rect(apple_rect.left,apple_rect.top,apple_rect.width + score_rect.width +6,apple_rect.height)
         pygame.draw.rect(screen,(56,74,12),bg_rect,2)
                  
     
